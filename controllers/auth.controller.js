@@ -7,7 +7,7 @@ require('dotenv/config')
 
 
 const { AccessToken, JSONResponse } = require('../lib/loggers');
-const { ErrorResponse } = require('../lib/helpers');
+const { ErrorResponse,SuccessResponse } = require('../lib/helpers');
 
 class AuthController {
 	static login = async (req, res, next) => {
@@ -18,25 +18,23 @@ class AuthController {
 		try {
 			existingUser = await User.findOne({ email: email })
 			if (!existingUser || !bcrypt.compareSync(password, existingUser.password)) {
-				const error = Error('Wrong details please check at once')
-				return next(error)
+				return ErrorResponse(res, undefined, 'Wrong details please check at once', 401);
 			}
+			// if user found
 			token = AccessToken({
 					_id: existingUser.id,
 					email: existingUser.email,
 					role: existingUser.role,
 			});
+			//covert to js object
 			existingUser = existingUser.toObject()
+			//remove password field 
 			delete existingUser.password
+			return SuccessResponse(res, existingUser, 'login success')
 		} catch (err) {
-			return ErrorResponse(res, undefined, err.message, 500);
+			return ErrorResponse(res, undefined, err, 500);
 		}
-		
-
-
 	}
-
-	
 
 	static getAuthUser = async (req, res) => {
 		const authHeader = req.headers['authorization']

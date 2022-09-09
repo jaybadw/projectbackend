@@ -6,7 +6,7 @@ const { SuccessResponse, ErrorResponse } = require('../lib/helpers')
 class UserController {
 	static createOne = async (req, res) => {
 		try {
-			const salt = await bcrypt.genSalt(10);
+			const salt = await bcrypt.genSalt(10)
 			const hashedPassword =await bcrypt.hash(req.body.password,salt)
 			const newUser = await User.create({
 				username: req.body.username,
@@ -14,6 +14,8 @@ class UserController {
 				email: req.body.email,
 				password:hashedPassword,
 			})
+
+
 
 			return SuccessResponse(res, newUser, undefined, 201)
 		} catch (err) {
