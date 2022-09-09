@@ -43,7 +43,7 @@ app.use(bodyParser.json());
 //   );
 app.use(express.urlencoded({ extended: true }))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(cors([process.env.FRONTEND_URL, process.env.PRODUCTION ? undefined : '*', '*']))
+app.use(cors())
 app.listen(PORT, () => {
 	console.log('Listening on port ' + PORT)
   })
