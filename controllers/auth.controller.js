@@ -30,7 +30,7 @@ class AuthController {
 			existingUser = existingUser.toObject()
 			//remove password field 
 			delete existingUser.password
-			return SuccessResponse(res, existingUser, 'login success')
+			return SuccessResponse(res, {existingUser, token}, 'login success')
 		} catch (err) {
 			return ErrorResponse(res, undefined, err, 500);
 		}

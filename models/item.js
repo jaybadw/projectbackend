@@ -4,11 +4,14 @@ const ItemSchema = new mongoose.Schema(
 	{
 		image:{type: String},
 		name: { type: String },
-		category:[ {
-			type: mongoose.SchemaTypes.ObjectId,
-			ref: 'Category'}],
+		description: { type: String },
+		subcategory:[ {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'SubCategory'}],
 		price: { type:String, },
-		quantity: { type: Number, },
+		quantity: { type: String },
+		vendor:{type:mongoose.Schema.Types.ObjectId, 
+			ref: 'Vendor'}
 	},
 	{ timestamps: true, collection: 'items' }
 )

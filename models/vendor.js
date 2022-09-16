@@ -3,14 +3,13 @@ const mongoose = require('mongoose')
 const VendorSchema = new mongoose.Schema(
 	{
 		image:{type: String, required: true, unique: true},
-		name: { type: String, required: true, unique: true },
-		category: {
-			type: mongoose.SchemaTypes.ObjectId,
-			required: true,
-			ref: 'Category',
-		},
-		price: { type: Number, required: true },
-		quantity: { type: Number, required: true },
+		fname: { type: String, required: true, unique: true },
+		lname: { type: String, required: true, unique: true },
+		description: { type: String, required: true },
+		startdate: { type: String, required: true },
+		farmbase: { type: String, required: true },
+		
+		
 	},
 	{ timestamps: true, collection: 'items' }
 )

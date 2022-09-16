@@ -41,7 +41,7 @@ class CategoryController {
 	static updateOne = async (req, res) => {
 		try {
 			const updatedCategory = await Category.findOneAndUpdate(
-				req.params.categoryID,
+				req.params.id,
 				req.body
 			)
 			return SuccessResponse(res, updatedCategory)

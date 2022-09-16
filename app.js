@@ -14,6 +14,7 @@ const mongoDb = require('./db');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8080
 const NAME = process.env.NAME || 'farm-project'
+const morgan = require('morgan')
 
 // const userInput ={
 // 	username: "farmerswin3",
@@ -30,6 +31,7 @@ const NAME = process.env.NAME || 'farm-project'
 // });
 
 
+app.use(morgan('dev'))
 
 /* Middlewares */
 app.use(express.json())
@@ -47,6 +49,8 @@ app.use(cors())
 app.listen(PORT, () => {
 	console.log('Listening on port ' + PORT)
   })
+
+
 /* Routers */
 
 
@@ -54,6 +58,9 @@ const categoryRouter = require('./routes/categoryroute')
 const userRouter = require('./routes/userRoute')
 const authRouter = require('./routes/authRoute')
 const itemRouter = require('./routes/itemroute')
+const subcategoryRouter = require('./routes/subcategoryRoute')
+const roleRouter = require('./routes/roleRoute')
+const vendorRouter = require('./routes/vendorRoute')
 
 
 
@@ -62,7 +69,9 @@ app.use('/item', itemRouter)
 app.use('/category', categoryRouter)
 app.use('/user', userRouter)
 app.use('/auth',authRouter)
-
+app.use('/subcategory', subcategoryRouter)
+app.use('/role', roleRouter)
+app.use('/vendor', vendorRouter)
 /* Start Express App */0
 // mongoose.Promise= global.promise;
 mongoose.connect(mongoDb.db, {

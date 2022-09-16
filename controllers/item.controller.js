@@ -1,9 +1,12 @@
-const Item = require('../models/Item')
+const Item = require('../models/item')
 const { SuccessResponse, ErrorResponse } = require('../lib/helpers')
 
 class ItemController {
 	static createOne = async (req, res) => {
 		try {
+			if (req.file){
+				req.body.image = req.file.path;
+			}
 			const newitem = await Item.create(req.body)
 			return SuccessResponse(res, newitem, undefined, 201)
 		} catch (err) {
@@ -25,20 +28,36 @@ class ItemController {
 			return ErrorResponse(res, err)
 		}
 	}
+	static getOneBySubcategory = async (req, res) => {
+		try {
+			const items = await Item.find({
+				subcategory: req.params.id
+			})
+			return SuccessResponse(res, subcategories)
+		} catch (err) 
+		
+		{
+			console.log(err)
+			return ErrorResponse(res, err)
+		}
+	}
 
 	static getAll = async (req, res) => {
 		try {
-			const categories = await Item.find().where('category').ne([]).populate('category')
-			return SuccessResponse(res, categories)
+			// const subcategories = await Item.find().where('SubCategory').ne([]).populate('SubCategory')
+			const subcategories = await Item.find()
+			return SuccessResponse(res, subcategories, 'worked')
+			// console.error();
 		} catch (err) {
-			return ErrorResponse(res, err)
+			return ErrorResponse(res, err, 'did not find')
+			console.error();
 		}
 	}
 
 	static updateOne = async (req, res) => {
 		try {
-			const updatedItem = await Item.findOneAndUpdate(
-				req.params.itemID,
+			const updatedItem = await Item.findByIdAndUpdate(
+				req.params.id,
 				req.body
 			)
 			return SuccessResponse(res, updatedItem)

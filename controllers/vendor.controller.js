@@ -1,4 +1,4 @@
-const Vendor = require('../models/Vendor')
+const Vendor = require('../models/vendor')
 const { SuccessResponse, ErrorResponse } = require('../lib/helpers')
 
 class VendorController {
@@ -7,7 +7,7 @@ class VendorController {
 			if (req.file){
 				req.body.image = req.file.path;
 			}
-			const newvvndor = await Vendor.create(req.body)
+			const newvendor = await Vendor.create(req.body)
 			return SuccessResponse(res, newvendor, undefined, 201)
 		} catch (err) {
 			console.log(err)
@@ -40,8 +40,8 @@ class VendorController {
 
 	static updateOne = async (req, res) => {
 		try {
-			const updatedVendor = await Vendor.findOneAndUpdate(
-				req.params.vendorID,
+			const updatedVendor = await Vendor.findByIdAndUpdate(
+				req.params.id,
 				req.body
 			)
 			return SuccessResponse(res, updatedVendor)

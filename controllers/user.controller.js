@@ -7,12 +7,13 @@ class UserController {
 	static createOne = async (req, res) => {
 		try {
 			const salt = await bcrypt.genSalt(10)
-			const hashedPassword =await bcrypt.hash(req.body.password,salt)
+			const hashedPassword = await bcrypt.hash(req.body.password,salt)
 			const newUser = await User.create({
 				username: req.body.username,
 				role:req.body.role,
 				email: req.body.email,
 				password:hashedPassword,
+				startdate: new Date().toLocaleDateString()
 			})
 
 

@@ -7,25 +7,20 @@ const cors = require('cors')
 
 const UserController = require('../controllers/user.controller');
   
-// var whitelist = ['http://localhost:4200','http://localhost:8080']
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.includes(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
 
+//route for login
 router
     .route('/login')
     .post(authController.login)
+
+ //route where user is created    
 router
 .route('/create')
 .post(UserController.createOne)
 
 
+router.route('/user')
+.get(authController.getAuthUser)
 
 
 
