@@ -11,7 +11,7 @@ const VendorSchema = new mongoose.Schema(
 		
 		
 	},
-	{ timestamps: true, collection: 'items' }
+	{ timestamps: true, }
 )
 
 module.exports = mongoose.model('Vendor',VendorSchema)

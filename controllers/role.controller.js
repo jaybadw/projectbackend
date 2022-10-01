@@ -20,7 +20,7 @@ class RoleController {
 
 	static getOne = async (req, res) => {
 		try {
-			const role = await Role.findById(req.params.roleID)
+			const role = await Role.findById(req.params.id)
 			return SuccessResponse(res, role)
 			
 		} catch (err) {

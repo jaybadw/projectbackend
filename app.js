@@ -61,17 +61,22 @@ const itemRouter = require('./routes/itemroute')
 const subcategoryRouter = require('./routes/subcategoryRoute')
 const roleRouter = require('./routes/roleRoute')
 const vendorRouter = require('./routes/vendorRoute')
+const serviceRouter = require('./routes/serviceroute')
 
 
 
 // app.use('/', indexRouter)
-app.use('/item', itemRouter)
-app.use('/category', categoryRouter)
 app.use('/user', userRouter)
 app.use('/auth',authRouter)
-app.use('/subcategory', subcategoryRouter)
 app.use('/role', roleRouter)
+app.use('/item', itemRouter)
+app.use('/category', categoryRouter)
+app.use('/subcategory', subcategoryRouter)
 app.use('/vendor', vendorRouter)
+app.use('/service',serviceRouter)
+
+
+
 /* Start Express App */0
 // mongoose.Promise= global.promise;
 mongoose.connect(mongoDb.db, {

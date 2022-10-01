@@ -1,7 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
 
-RoleSchema = new Schema({
-   role: String
-});
+const RoleSchema = new mongoose.Schema(
+	{
+		role:String
+
+	},
+)
+	
+
 module.exports = mongoose.model('Role', RoleSchema);

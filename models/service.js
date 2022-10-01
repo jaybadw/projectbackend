@@ -1,9 +1,10 @@
+const mongoose = require('mongoose')
+
 const ServiceSchema = new mongoose.Schema(
 	{
-		name: { type: String,  unique: true },
-		image: { type:String,  unique: true },
-		description: { type: String, 
-			unique: true },
+		name: { type: String, required: true, unique: true },
+		image: { type:String, required: true, unique: true },
+		description: { type: String, required: true, unique: true },
 
 	},
 	

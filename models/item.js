@@ -13,7 +13,7 @@ const ItemSchema = new mongoose.Schema(
 		vendor:{type:mongoose.Schema.Types.ObjectId, 
 			ref: 'Vendor'}
 	},
-	{ timestamps: true, collection: 'items' }
+	{ timestamps: true, }
 )
 
 module.exports = mongoose.model('Item', ItemSchema)
